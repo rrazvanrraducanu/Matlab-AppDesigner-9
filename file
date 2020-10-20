@@ -1,0 +1,223 @@
+classdef app9 < matlab.apps.AppBase
+
+    % Properties that correspond to app components
+    properties (Access = public)
+        UIFigure      matlab.ui.Figure
+        Label         matlab.ui.control.Label
+        EditField     matlab.ui.control.NumericEditField
+        XLabel        matlab.ui.control.Label
+        Label_2       matlab.ui.control.Label
+        EditField_2   matlab.ui.control.NumericEditField
+        Label_3       matlab.ui.control.Label
+        d1Label       matlab.ui.control.Label
+        d2Label       matlab.ui.control.Label
+        Label_4       matlab.ui.control.Label
+        EditField_3   matlab.ui.control.NumericEditField
+        XLabel_2      matlab.ui.control.Label
+        YLabel        matlab.ui.control.Label
+        Label_6       matlab.ui.control.Label
+        EditField_4   matlab.ui.control.NumericEditField
+        Label_7       matlab.ui.control.Label
+        EditField_5   matlab.ui.control.NumericEditField
+        YLabel_2      matlab.ui.control.Label
+        Label_8       matlab.ui.control.Label
+        EditField_6   matlab.ui.control.NumericEditField
+        Label_9       matlab.ui.control.Label
+        UIAxes        matlab.ui.control.UIAxes
+        plotd1Button  matlab.ui.control.Button
+        plotd2Button  matlab.ui.control.Button
+    end
+
+
+    methods (Access = private)
+    
+        function plotline(app,a,b,c)
+            x=linspace(-100,100);
+            %ax+by+c=0
+            y=(-a/b)*x-c/a;
+            plot(app.UIAxes,y);
+        end
+        
+    end
+
+
+    methods (Access = private)
+
+        % Button pushed function: plotd1Button
+        function plotd1ButtonPushed(app, event)
+            a=app.EditField.Value;
+            b=app.EditField_2.Value;
+            c=app.EditField_4.Value;
+            plotline(app,a,b,c);
+            hold(app.UIAxes);
+        end
+
+        % Button pushed function: plotd2Button
+        function plotd2ButtonPushed(app, event)
+             a=app.EditField_3.Value;
+            b=app.EditField_5.Value;
+            c=app.EditField_6.Value;
+            plotline(app,a,b,c);
+            hold(app.UIAxes);
+        end
+    end
+
+    % App initialization and construction
+    methods (Access = private)
+
+        % Create UIFigure and components
+        function createComponents(app)
+
+            % Create UIFigure
+            app.UIFigure = uifigure;
+            app.UIFigure.Position = [100 100 640 480];
+            app.UIFigure.Name = 'UI Figure';
+
+            % Create Label
+            app.Label = uilabel(app.UIFigure);
+            app.Label.HorizontalAlignment = 'right';
+            app.Label.Position = [31 418 25 22];
+            app.Label.Text = '';
+
+            % Create EditField
+            app.EditField = uieditfield(app.UIFigure, 'numeric');
+            app.EditField.Position = [71 418 42 22];
+
+            % Create XLabel
+            app.XLabel = uilabel(app.UIFigure);
+            app.XLabel.Position = [122 418 25 22];
+            app.XLabel.Text = 'X +';
+
+            % Create Label_2
+            app.Label_2 = uilabel(app.UIFigure);
+            app.Label_2.HorizontalAlignment = 'right';
+            app.Label_2.Position = [120 418 25 22];
+            app.Label_2.Text = '';
+
+            % Create EditField_2
+            app.EditField_2 = uieditfield(app.UIFigure, 'numeric');
+            app.EditField_2.Position = [160 418 37 22];
+
+            % Create Label_3
+            app.Label_3 = uilabel(app.UIFigure);
+            app.Label_3.Position = [308 418 25 22];
+            app.Label_3.Text = '= 0';
+
+            % Create d1Label
+            app.d1Label = uilabel(app.UIFigure);
+            app.d1Label.Position = [37 418 26 22];
+            app.d1Label.Text = 'd1: ';
+
+            % Create d2Label
+            app.d2Label = uilabel(app.UIFigure);
+            app.d2Label.Position = [37 377 25 22];
+            app.d2Label.Text = 'd2:';
+
+            % Create Label_4
+            app.Label_4 = uilabel(app.UIFigure);
+            app.Label_4.HorizontalAlignment = 'right';
+            app.Label_4.Position = [31 377 25 22];
+            app.Label_4.Text = '';
+
+            % Create EditField_3
+            app.EditField_3 = uieditfield(app.UIFigure, 'numeric');
+            app.EditField_3.Position = [71 377 42 22];
+
+            % Create XLabel_2
+            app.XLabel_2 = uilabel(app.UIFigure);
+            app.XLabel_2.Position = [122 377 25 22];
+            app.XLabel_2.Text = 'X +';
+
+            % Create YLabel
+            app.YLabel = uilabel(app.UIFigure);
+            app.YLabel.Position = [206 418 25 22];
+            app.YLabel.Text = 'Y +';
+
+            % Create Label_6
+            app.Label_6 = uilabel(app.UIFigure);
+            app.Label_6.HorizontalAlignment = 'right';
+            app.Label_6.Position = [236 418 25 22];
+            app.Label_6.Text = '';
+
+            % Create EditField_4
+            app.EditField_4 = uieditfield(app.UIFigure, 'numeric');
+            app.EditField_4.Position = [246 418 31 22];
+
+            % Create Label_7
+            app.Label_7 = uilabel(app.UIFigure);
+            app.Label_7.HorizontalAlignment = 'right';
+            app.Label_7.Position = [124 377 25 22];
+            app.Label_7.Text = '';
+
+            % Create EditField_5
+            app.EditField_5 = uieditfield(app.UIFigure, 'numeric');
+            app.EditField_5.Position = [164 377 33 22];
+
+            % Create YLabel_2
+            app.YLabel_2 = uilabel(app.UIFigure);
+            app.YLabel_2.Position = [203 377 25 22];
+            app.YLabel_2.Text = 'Y +';
+
+            % Create Label_8
+            app.Label_8 = uilabel(app.UIFigure);
+            app.Label_8.HorizontalAlignment = 'right';
+            app.Label_8.Position = [207 377 25 22];
+            app.Label_8.Text = '';
+
+            % Create EditField_6
+            app.EditField_6 = uieditfield(app.UIFigure, 'numeric');
+            app.EditField_6.Position = [247 377 30 22];
+
+            % Create Label_9
+            app.Label_9 = uilabel(app.UIFigure);
+            app.Label_9.Position = [308 377 25 22];
+            app.Label_9.Text = '= 0';
+
+            % Create UIAxes
+            app.UIAxes = uiaxes(app.UIFigure);
+            title(app.UIAxes, 'Title')
+            xlabel(app.UIAxes, 'X')
+            ylabel(app.UIAxes, 'Y')
+            app.UIAxes.Box = 'on';
+            app.UIAxes.XGrid = 'on';
+            app.UIAxes.YGrid = 'on';
+            app.UIAxes.Position = [37 54 562 299];
+
+            % Create plotd1Button
+            app.plotd1Button = uibutton(app.UIFigure, 'push');
+            app.plotd1Button.ButtonPushedFcn = createCallbackFcn(app, @plotd1ButtonPushed, true);
+            app.plotd1Button.Position = [355 418 100 22];
+            app.plotd1Button.Text = 'plot d1';
+
+            % Create plotd2Button
+            app.plotd2Button = uibutton(app.UIFigure, 'push');
+            app.plotd2Button.ButtonPushedFcn = createCallbackFcn(app, @plotd2ButtonPushed, true);
+            app.plotd2Button.Position = [355 377 100 22];
+            app.plotd2Button.Text = 'plot d2';
+        end
+    end
+
+    methods (Access = public)
+
+        % Construct app
+        function app = app9
+
+            % Create and configure components
+            createComponents(app)
+
+            % Register the app with App Designer
+            registerApp(app, app.UIFigure)
+
+            if nargout == 0
+                clear app
+            end
+        end
+
+        % Code that executes before app deletion
+        function delete(app)
+
+            % Delete UIFigure when app is deleted
+            delete(app.UIFigure)
+        end
+    end
+end
